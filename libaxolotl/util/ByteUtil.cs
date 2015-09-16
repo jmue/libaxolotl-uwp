@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.util
 {
@@ -115,13 +111,13 @@ namespace libaxolotl.util
         public static int shortToByteArray(byte[] bytes, int offset, int value)
         {
             bytes[offset + 1] = (byte)value;
-            bytes[offset] = (byte)(value >> 8);
+            bytes[offset]     = (byte)(value >> 8);
             return 2;
         }
 
         public static int shortToLittleEndianByteArray(byte[] bytes, int offset, int value)
         {
-            bytes[offset] = (byte)value;
+            bytes[offset]     = (byte)value;
             bytes[offset + 1] = (byte)(value >> 8);
             return 2;
         }
@@ -137,7 +133,7 @@ namespace libaxolotl.util
         {
             bytes[offset + 2] = (byte)value;
             bytes[offset + 1] = (byte)(value >> 8);
-            bytes[offset] = (byte)(value >> 16);
+            bytes[offset]     = (byte)(value >> 16);
             return 3;
         }
 
@@ -153,13 +149,13 @@ namespace libaxolotl.util
             bytes[offset + 3] = (byte)value;
             bytes[offset + 2] = (byte)(value >> 8);
             bytes[offset + 1] = (byte)(value >> 16);
-            bytes[offset] = (byte)(value >> 24);
+            bytes[offset]     = (byte)(value >> 24);
             return 4;
         }
 
         public static int intToLittleEndianByteArray(byte[] bytes, int offset, int value)
         {
-            bytes[offset] = (byte)value;
+            bytes[offset]     = (byte)value;
             bytes[offset + 1] = (byte)(value >> 8);
             bytes[offset + 2] = (byte)(value >> 16);
             bytes[offset + 3] = (byte)(value >> 24);
@@ -182,7 +178,7 @@ namespace libaxolotl.util
             bytes[offset + 3] = (byte)(value >> 32);
             bytes[offset + 2] = (byte)(value >> 40);
             bytes[offset + 1] = (byte)(value >> 48);
-            bytes[offset] = (byte)(value >> 56);
+            bytes[offset]     = (byte)(value >> 56);
             return 8;
         }
 
@@ -210,9 +206,9 @@ namespace libaxolotl.util
         public static int byteArrayToMedium(byte[] bytes, int offset)
         {
             return
-                (bytes[offset] & 0xff) << 16 |
-                    (bytes[offset + 1] & 0xff) << 8 |
-                    (bytes[offset + 2] & 0xff);
+                (bytes[offset]     & 0xff) << 16 |
+                (bytes[offset + 1] & 0xff) << 8 |
+                (bytes[offset + 2] & 0xff);
         }
 
         public static int byteArrayToInt(byte[] bytes)
@@ -223,19 +219,19 @@ namespace libaxolotl.util
         public static int byteArrayToInt(byte[] bytes, int offset)
         {
             return
-                (bytes[offset] & 0xff) << 24 |
-                    (bytes[offset + 1] & 0xff) << 16 |
-                    (bytes[offset + 2] & 0xff) << 8 |
-                    (bytes[offset + 3] & 0xff);
+                (bytes[offset]     & 0xff) << 24 |
+                (bytes[offset + 1] & 0xff) << 16 |
+                (bytes[offset + 2] & 0xff) << 8 |
+                (bytes[offset + 3] & 0xff);
         }
 
         public static int byteArrayToIntLittleEndian(byte[] bytes, int offset)
         {
             return
                 (bytes[offset + 3] & 0xff) << 24 |
-                    (bytes[offset + 2] & 0xff) << 16 |
-                    (bytes[offset + 1] & 0xff) << 8 |
-                    (bytes[offset] & 0xff);
+                (bytes[offset + 2] & 0xff) << 16 |
+                (bytes[offset + 1] & 0xff) << 8 |
+                (bytes[offset]     & 0xff);
         }
 
         public static long byteArrayToLong(byte[] bytes)
@@ -247,22 +243,22 @@ namespace libaxolotl.util
         {
             return
                 ((bytes[offset + 0] & 0xffL) << 24) |
-                    ((bytes[offset + 1] & 0xffL) << 16) |
-                    ((bytes[offset + 2] & 0xffL) << 8) |
-                    ((bytes[offset + 3] & 0xffL));
+                ((bytes[offset + 1] & 0xffL) << 16) |
+                ((bytes[offset + 2] & 0xffL) << 8) |
+                ((bytes[offset + 3] & 0xffL));
         }
 
         public static long byteArrayToLong(byte[] bytes, int offset)
         {
             return
-                ((bytes[offset] & 0xffL) << 56) |
-                    ((bytes[offset + 1] & 0xffL) << 48) |
-                    ((bytes[offset + 2] & 0xffL) << 40) |
-                    ((bytes[offset + 3] & 0xffL) << 32) |
-                    ((bytes[offset + 4] & 0xffL) << 24) |
-                    ((bytes[offset + 5] & 0xffL) << 16) |
-                    ((bytes[offset + 6] & 0xffL) << 8) |
-                    ((bytes[offset + 7] & 0xffL));
+                ((bytes[offset]     & 0xffL) << 56) |
+                ((bytes[offset + 1] & 0xffL) << 48) |
+                ((bytes[offset + 2] & 0xffL) << 40) |
+                ((bytes[offset + 3] & 0xffL) << 32) |
+                ((bytes[offset + 4] & 0xffL) << 24) |
+                ((bytes[offset + 5] & 0xffL) << 16) |
+                ((bytes[offset + 6] & 0xffL) << 8) |
+                ((bytes[offset + 7] & 0xffL));
         }
 
     }

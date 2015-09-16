@@ -1,15 +1,9 @@
 ﻿using libaxolotl.util;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.kdf
 {
     public class DerivedMessageSecrets
     {
-
         public static readonly int SIZE = 80;
         private static readonly int CIPHER_KEY_LENGTH = 32;
         private static readonly int MAC_KEY_LENGTH = 32;

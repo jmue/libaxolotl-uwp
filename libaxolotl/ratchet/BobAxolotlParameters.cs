@@ -1,16 +1,11 @@
 ﻿using libaxolotl.ecc;
 using Strilanc.Value;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.ratchet
 {
     public class BobAxolotlParameters
     {
-
         private readonly IdentityKeyPair ourIdentityKey;
         private readonly ECKeyPair ourSignedPreKey;
         private readonly May<ECKeyPair> ourOneTimePreKey;

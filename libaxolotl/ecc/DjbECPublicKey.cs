@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using libaxolotl.util;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using libaxolotl.util;
 
 namespace libaxolotl.ecc
 {
@@ -16,19 +13,16 @@ namespace libaxolotl.ecc
             this.publicKey = publicKey;
         }
 
-
         public byte[] serialize()
         {
             byte[] type = { (byte)Curve.DJB_TYPE };
             return ByteUtil.combine(type, publicKey);
         }
 
-
         public int getType()
         {
             return Curve.DJB_TYPE;
         }
-
 
         public override bool Equals(Object other)
         {
@@ -39,12 +33,10 @@ namespace libaxolotl.ecc
             return Enumerable.SequenceEqual(this.publicKey, that.publicKey);
         }
 
-
         public override int GetHashCode()
         {
             return string.Join(",", publicKey).GetHashCode();
         }
-
 
         public int CompareTo(Object another)
         {
@@ -58,6 +50,5 @@ namespace libaxolotl.ecc
         {
             return publicKey;
         }
-
     }
 }

@@ -1,26 +1,21 @@
 ﻿using libaxolotl.ecc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.ratchet
 {
     public class SymmetricAxolotlParameters
     {
+        private readonly ECKeyPair ourBaseKey;
+        private readonly ECKeyPair ourRatchetKey;
+        private readonly IdentityKeyPair ourIdentityKey;
 
-        private readonly ECKeyPair       ourBaseKey;
-  private readonly ECKeyPair       ourRatchetKey;
-  private readonly IdentityKeyPair ourIdentityKey;
+        private readonly ECPublicKey theirBaseKey;
+        private readonly ECPublicKey theirRatchetKey;
+        private readonly IdentityKey theirIdentityKey;
 
-  private readonly ECPublicKey     theirBaseKey;
-  private readonly ECPublicKey     theirRatchetKey;
-  private readonly IdentityKey     theirIdentityKey;
-
-  SymmetricAxolotlParameters(ECKeyPair ourBaseKey, ECKeyPair ourRatchetKey,
-                             IdentityKeyPair ourIdentityKey, ECPublicKey theirBaseKey,
-                             ECPublicKey theirRatchetKey, IdentityKey theirIdentityKey)
+        SymmetricAxolotlParameters(ECKeyPair ourBaseKey, ECKeyPair ourRatchetKey,
+                                   IdentityKeyPair ourIdentityKey, ECPublicKey theirBaseKey,
+                                   ECPublicKey theirRatchetKey, IdentityKey theirIdentityKey)
         {
             this.ourBaseKey = ourBaseKey;
             this.ourRatchetKey = ourRatchetKey;

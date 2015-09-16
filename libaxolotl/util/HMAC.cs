@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
 using Windows.Storage.Streams;
@@ -48,6 +45,7 @@ namespace libaxolotl.util
 
             return ret;
         }
+
         public static byte[] aesCtr(byte[] message, byte[] key, uint counter)
         {
             SymmetricKeyAlgorithmProvider objAlg = SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithmNames.AesCbcPkcs7); // CRT
@@ -66,8 +64,6 @@ namespace libaxolotl.util
 
             return ret;
         }
-
-
     }
 
     public class Decrypt

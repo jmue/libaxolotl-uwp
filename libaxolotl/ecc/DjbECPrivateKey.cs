@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace libaxolotl.ecc
+﻿namespace libaxolotl.ecc
 {
     public class DjbECPrivateKey : ECPrivateKey
     {
-
         private readonly byte[] privateKey;
 
         public DjbECPrivateKey(byte[] privateKey)
@@ -16,12 +9,10 @@ namespace libaxolotl.ecc
             this.privateKey = privateKey;
         }
 
-
         public byte[] serialize()
         {
             return privateKey;
         }
-
 
         public int getType()
         {

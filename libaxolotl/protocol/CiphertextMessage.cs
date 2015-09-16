@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace libaxolotl.protocol
+﻿namespace libaxolotl.protocol
 {
     public abstract class CiphertextMessage // interface
     {
-
         public const uint UNSUPPORTED_VERSION = 1;
         public const uint CURRENT_VERSION = 3;
 

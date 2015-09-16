@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.state.impl
 {
     public class InMemoryIdentityKeyStore : IdentityKeyStore
     {
-
         private readonly IDictionary<String, IdentityKey> trustedKeys = new Dictionary<String, IdentityKey>();
 
         private readonly IdentityKeyPair identityKeyPair;
@@ -24,7 +20,6 @@ namespace libaxolotl.state.impl
         {
             return identityKeyPair;
         }
-
 
         public /*override*/ uint getLocalRegistrationId()
         {

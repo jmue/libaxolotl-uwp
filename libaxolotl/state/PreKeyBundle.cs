@@ -1,9 +1,4 @@
 ﻿using libaxolotl.ecc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.state
 {
@@ -15,7 +10,6 @@ namespace libaxolotl.state
  */
     public class PreKeyBundle
     {
-
         private uint registrationId;
 
         private uint deviceId;

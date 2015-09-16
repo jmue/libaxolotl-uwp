@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TextSecure.libaxolotl
 {
@@ -10,12 +6,12 @@ namespace TextSecure.libaxolotl
     {
 
         public InvalidMacException(String detailMessage)
-            :base(detailMessage)
+            : base(detailMessage)
         {
         }
 
         public InvalidMacException(Exception exception)
-            :base(exception.Message)
+            : base(exception.Message)
         {
 
         }

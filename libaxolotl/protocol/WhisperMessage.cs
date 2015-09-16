@@ -2,17 +2,13 @@
 using libaxolotl.ecc;
 using libaxolotl.util;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.protocol
 {
     public partial class WhisperMessage : CiphertextMessage
     {
-
         private static readonly int MAC_LENGTH = 8;
 
         private readonly uint messageVersion;

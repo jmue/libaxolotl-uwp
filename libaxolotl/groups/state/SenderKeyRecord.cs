@@ -1,11 +1,7 @@
 ﻿using libaxolotl.ecc;
 using libaxolotl.groups.state;
 using libaxolotl.state;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static libaxolotl.state.StorageProtos;
 
 namespace libaxolotl.groups
@@ -18,7 +14,6 @@ namespace libaxolotl.groups
      */
     public class SenderKeyRecord
     {
-
         private IList<SenderKeyState> senderKeyStates = new List<SenderKeyState>();
 
         public SenderKeyRecord() { }

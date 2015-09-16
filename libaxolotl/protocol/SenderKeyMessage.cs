@@ -2,16 +2,11 @@
 using libaxolotl.ecc;
 using libaxolotl.util;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.protocol
 {
     public partial class SenderKeyMessage : CiphertextMessage
     {
-
         private static readonly int SIGNATURE_LENGTH = 64;
 
         private readonly uint messageVersion;
@@ -127,7 +122,6 @@ namespace libaxolotl.protocol
         {
             return serialized;
         }
-
 
         public override uint getType()
         {

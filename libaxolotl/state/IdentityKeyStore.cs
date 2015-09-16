@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.state
 {
@@ -13,7 +9,6 @@ namespace libaxolotl.state
      */
     public interface IdentityKeyStore
     {
-
         /**
          * Get the local client's identity key pair.
          *
@@ -57,6 +52,5 @@ namespace libaxolotl.state
          * @return true if trusted, false if untrusted.
          */
         bool isTrustedIdentity(String name, IdentityKey identityKey);
-
     }
 }

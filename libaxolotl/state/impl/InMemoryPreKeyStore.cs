@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.state.impl
 {
     public class InMemoryPreKeyStore : PreKeyStore
     {
-
         private readonly IDictionary<uint, byte[]> store = new Dictionary<uint, byte[]>();
-
-
+        
         public PreKeyRecord loadPreKey(uint preKeyId)
         {
             try
@@ -31,7 +26,6 @@ namespace libaxolotl.state.impl
             }
         }
 
-
         public void storePreKey(uint preKeyId, PreKeyRecord record)
         {
             if (store.ContainsKey(preKeyId)) // mimic Java HashMap
@@ -41,12 +35,10 @@ namespace libaxolotl.state.impl
             store.Add(preKeyId, record.serialize()); // put
         }
 
-
         public bool containsPreKey(uint preKeyId)
         {
             return store.ContainsKey(preKeyId);
         }
-
 
         public void removePreKey(uint preKeyId)
         {

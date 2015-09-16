@@ -2,9 +2,6 @@
 using libaxolotl.state;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Security.Cryptography;
 using Windows.Storage.Streams;
 
@@ -17,7 +14,6 @@ namespace libaxolotl.util
      */
     public class KeyHelper
     {
-
         private KeyHelper() { }
 
         /**
@@ -60,10 +56,7 @@ namespace libaxolotl.util
 
         public static uint getRandomSequence(uint max)
         {
-
             return CryptographicBuffer.GenerateRandomNumber() % max;
-
-
         }
 
         /**
@@ -121,7 +114,6 @@ namespace libaxolotl.util
             return new SignedPreKeyRecord(signedPreKeyId, getTime(), keyPair, signature);
         }
 
-
         public static ECKeyPair generateSenderSigningKey()
         {
             return Curve.generateKeyPair();
@@ -135,14 +127,11 @@ namespace libaxolotl.util
             CryptographicBuffer.CopyToByteArray(random, out key);
 
             return key;
-
         }
 
         public static uint generateSenderKeyId()
         {
-
             return CryptographicBuffer.GenerateRandomNumber();
-
         }
 
         public static ulong getTime()

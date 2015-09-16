@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static libaxolotl.state.StorageProtos;
 
 namespace libaxolotl.state
@@ -14,7 +11,6 @@ namespace libaxolotl.state
  */
     public class SessionRecord
     {
-
         private static int ARCHIVED_STATES_MAX_LENGTH = 40;
 
         private SessionState sessionState = new SessionState();
@@ -76,7 +72,6 @@ namespace libaxolotl.state
         {
             return previousStates;
         }
-
 
         public bool isFresh()
         {

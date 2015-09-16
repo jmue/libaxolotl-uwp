@@ -1,17 +1,10 @@
-﻿using libaxolotl;
-using libaxolotl.state;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.state.impl
 {
     public class InMemorySessionStore : SessionStore
     {
-
         static object Lock = new object();
 
         private IDictionary<AxolotlAddress, byte[]> sessions = new Dictionary<AxolotlAddress, byte[]>();
@@ -58,7 +51,6 @@ namespace libaxolotl.state.impl
             return deviceIds;
         }
 
-
         public void storeSession(AxolotlAddress address, SessionRecord record)
         {
             if (sessions.ContainsKey(address)) //mimic HashMap update behaviour
@@ -68,18 +60,15 @@ namespace libaxolotl.state.impl
             sessions.Add(address, record.serialize()); // put
         }
 
-
         public bool containsSession(AxolotlAddress address)
         {
             return sessions.ContainsKey(address);
         }
 
-
         public void deleteSession(AxolotlAddress address)
         {
             sessions.Remove(address);
         }
-
 
         public void deleteAllSessions(String name)
         {

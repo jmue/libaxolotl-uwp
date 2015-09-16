@@ -4,11 +4,8 @@ using libaxolotl.state;
 using libaxolotl.util;
 using Strilanc.Value;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.ratchet
 {
@@ -68,11 +65,11 @@ namespace libaxolotl.ratchet
                 }
 
                 byte[] agree1 = Curve.calculateAgreement(parameters.getTheirSignedPreKey(),
-                                                       parameters.getOurIdentityKey().getPrivateKey());
+                                                         parameters.getOurIdentityKey().getPrivateKey());
                 byte[] agree2 = Curve.calculateAgreement(parameters.getTheirIdentityKey().getPublicKey(),
-                                                        parameters.getOurBaseKey().getPrivateKey());
+                                                         parameters.getOurBaseKey().getPrivateKey());
                 byte[] agree3 = Curve.calculateAgreement(parameters.getTheirSignedPreKey(),
-                                                       parameters.getOurBaseKey().getPrivateKey());
+                                                         parameters.getOurBaseKey().getPrivateKey());
 
                 secrets.Write(agree1, 0, agree1.Length);
                 secrets.Write(agree2, 0, agree2.Length);
@@ -119,11 +116,11 @@ namespace libaxolotl.ratchet
                 }
 
                 byte[] agree1 = Curve.calculateAgreement(parameters.getTheirIdentityKey().getPublicKey(),
-                                                       parameters.getOurSignedPreKey().getPrivateKey());
+                                                         parameters.getOurSignedPreKey().getPrivateKey());
                 byte[] agree2 = Curve.calculateAgreement(parameters.getTheirBaseKey(),
-                                                       parameters.getOurIdentityKey().getPrivateKey());
+                                                         parameters.getOurIdentityKey().getPrivateKey());
                 byte[] agree3 = Curve.calculateAgreement(parameters.getTheirBaseKey(),
-                                                       parameters.getOurSignedPreKey().getPrivateKey());
+                                                         parameters.getOurSignedPreKey().getPrivateKey());
                 secrets.Write(agree1, 0, agree1.Length);
                 secrets.Write(agree2, 0, agree2.Length);
                 secrets.Write(agree3, 0, agree3.Length);

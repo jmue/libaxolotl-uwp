@@ -1,17 +1,11 @@
 ﻿using Google.ProtocolBuffers;
 using libaxolotl.ecc;
 using libaxolotl.util;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.protocol
 {
     public class KeyExchangeMessage
     {
-
         public static readonly uint INITIATE_FLAG = 0x01;
         public static readonly uint RESPONSE_FLAG = 0X02;
         public static readonly uint SIMULTAENOUS_INITIATE_FLAG = 0x04;

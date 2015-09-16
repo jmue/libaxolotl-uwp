@@ -6,9 +6,6 @@ using libaxolotl.util;
 using Strilanc.Value;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl
 {
@@ -142,7 +139,6 @@ namespace libaxolotl
          * @throws UntrustedIdentityException when the {@link IdentityKey} of the sender is untrusted.
          */
         public byte[] decrypt(PreKeyWhisperMessage ciphertext, DecryptionCallback callback)
-
         {
             lock (SESSION_LOCK)
             {
@@ -176,7 +172,6 @@ namespace libaxolotl
          * @throws NoSessionException if there is no established session for this contact.
          */
         public byte[] decrypt(WhisperMessage ciphertext)
-
         {
             return decrypt(ciphertext, new NullDecryptionCallback());
         }
@@ -200,11 +195,9 @@ namespace libaxolotl
          * @throws NoSessionException if there is no established session for this contact.
          */
         public byte[] decrypt(WhisperMessage ciphertext, DecryptionCallback callback)
-
         {
             lock (SESSION_LOCK)
             {
-
                 if (!sessionStore.containsSession(remoteAddress))
                 {
                     throw new NoSessionException($"No session for: {remoteAddress}");
@@ -283,9 +276,9 @@ namespace libaxolotl
                                                                       chainKey, counter);
 
             ciphertextMessage.verifyMac(messageVersion,
-                                            sessionState.getRemoteIdentityKey(),
-                                            sessionState.getLocalIdentityKey(),
-                                            messageKeys.getMacKey());
+                                        sessionState.getRemoteIdentityKey(),
+                                        sessionState.getLocalIdentityKey(),
+                                        messageKeys.getMacKey());
 
             byte[] plaintext = getPlaintext(messageVersion, messageKeys, ciphertextMessage.getBody());
 
@@ -318,7 +311,6 @@ namespace libaxolotl
         }
 
         private ChainKey getOrCreateChainKey(SessionState sessionState, ECPublicKey theirEphemeral)
-
         {
             try
             {
@@ -351,7 +343,6 @@ namespace libaxolotl
         private MessageKeys getOrCreateMessageKeys(SessionState sessionState,
                                                    ECPublicKey theirEphemeral,
                                                    ChainKey chainKey, uint counter)
-
         {
             if (chainKey.getIndex() > counter)
             {
@@ -361,7 +352,7 @@ namespace libaxolotl
                 }
                 else
                 {
-                    throw new DuplicateMessageException($"Received message with old counter: {chainKey.getIndex()}  , {counter}");
+                    throw new DuplicateMessageException($"Received message with old counter: {chainKey.getIndex()} , {counter}");
                 }
             }
 

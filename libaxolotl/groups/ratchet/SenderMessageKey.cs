@@ -1,10 +1,6 @@
 ﻿using libaxolotl.kdf;
 using libaxolotl.util;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.groups.ratchet
 {
@@ -16,7 +12,6 @@ namespace libaxolotl.groups.ratchet
      */
     public class SenderMessageKey
     {
-
         private readonly uint iteration;
         private readonly byte[] iv;
         private readonly byte[] cipherKey;

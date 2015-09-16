@@ -3,10 +3,6 @@ using libaxolotl.groups.state;
 using libaxolotl.protocol;
 using libaxolotl.util;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.groups
 {
@@ -22,7 +18,6 @@ namespace libaxolotl.groups
      */
     public class GroupCipher
     {
-
         public static readonly Object LOCK = new Object();
 
         private readonly SenderKeyStore senderKeyStore;
@@ -155,23 +150,23 @@ namespace libaxolotl.groups
                 }
             }
 
-			//Avoiding a uint overflow
-			uint sckIteration = senderChainKey.getIteration();
-			if(sckIteration > iteration)
-			{
-				if (sckIteration - iteration > 2000)
-				{
-					throw new InvalidMessageException("Over 2000 messages into the future!");
-				}
-			}
+            //Avoiding a uint overflow
+            uint sckIteration = senderChainKey.getIteration();
+            if(sckIteration > iteration)
+            {
+                if (sckIteration - iteration > 2000)
+                {
+                    throw new InvalidMessageException("Over 2000 messages into the future!");
+                }
+            }
 
-			while (senderChainKey.getIteration() < iteration)
-			{
-				senderKeyState.addSenderMessageKey(senderChainKey.getSenderMessageKey());
-				senderChainKey = senderChainKey.getNext();
-			}
+            while (senderChainKey.getIteration() < iteration)
+            {
+                senderKeyState.addSenderMessageKey(senderChainKey.getSenderMessageKey());
+                senderChainKey = senderChainKey.getNext();
+            }
 
-			senderKeyState.setSenderChainKey(senderChainKey.getNext());
+            senderKeyState.setSenderChainKey(senderChainKey.getNext());
             return senderChainKey.getSenderMessageKey();
         }
 
@@ -204,7 +199,7 @@ namespace libaxolotl.groups
                 return Encrypt.aesCbcPkcs5(plaintext, key, iv);
             }
             catch (Exception e)
-    {
+            {
                 throw new Exception(e.Message);
             }
         }

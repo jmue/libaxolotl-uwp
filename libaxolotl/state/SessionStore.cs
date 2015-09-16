@@ -1,9 +1,5 @@
-﻿using libaxolotl;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.state
 {
@@ -66,6 +62,5 @@ namespace libaxolotl.state
          * @param name the name of the remote client.
          */
         void deleteAllSessions(String name);
-
     }
 }

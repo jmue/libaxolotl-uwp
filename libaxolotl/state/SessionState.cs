@@ -7,9 +7,6 @@ using Strilanc.Value;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static libaxolotl.state.StorageProtos;
 using static libaxolotl.state.StorageProtos.SessionStructure.Types;
 
@@ -17,7 +14,6 @@ namespace libaxolotl.state
 {
     public class SessionState
     {
-
         private SessionStructure sessionStructure;
 
         public SessionState()
@@ -94,7 +90,7 @@ namespace libaxolotl.state
             }
             catch (InvalidKeyException e)
             {
-				Debug.WriteLine(e.ToString(), "SessionRecordV2");
+                Debug.WriteLine(e.ToString(), "SessionRecordV2");
                 return null;
             }
         }
@@ -186,8 +182,8 @@ namespace libaxolotl.state
                 }
                 catch (InvalidKeyException e)
                 {
-					Debug.WriteLine(e.ToString(), "SessionRecordV2");
-				}
+                    Debug.WriteLine(e.ToString(), "SessionRecordV2");
+                }
 
                 index++;
             }
@@ -313,7 +309,7 @@ namespace libaxolotl.state
                 if (messageKey.Index == counter)
                 {
                     result = new MessageKeys(messageKey.CipherKey.ToByteArray(),
-                                            messageKey.MacKey.ToByteArray(),
+                                             messageKey.MacKey.ToByteArray(),
                                              messageKey.Iv.ToByteArray(),
                                              messageKey.Index);
 

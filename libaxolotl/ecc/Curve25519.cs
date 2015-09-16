@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using curve25519;
+﻿using curve25519;
 using Windows.Security.Cryptography;
-using Windows.Security.Cryptography.Core;
 using Windows.Storage.Streams;
-using System.Diagnostics;
 
 namespace libaxolotl.ecc
 {
-
     class Curve25519
     {
         private static Curve25519 instance;
@@ -27,7 +19,6 @@ namespace libaxolotl.ecc
             }
             return instance;
         }
-
 
         /**
          * {@link Curve25519} is backed by either a native (via JNI)

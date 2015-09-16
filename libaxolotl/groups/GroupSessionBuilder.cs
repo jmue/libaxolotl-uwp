@@ -2,10 +2,6 @@
 using libaxolotl.protocol;
 using libaxolotl.util;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.groups
 {
@@ -24,10 +20,8 @@ namespace libaxolotl.groups
      *
      * @author
      */
-
     public class GroupSessionBuilder
     {
-
         private readonly SenderKeyStore senderKeyStore;
 
         public GroupSessionBuilder(SenderKeyStore senderKeyStore)

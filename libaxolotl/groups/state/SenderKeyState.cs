@@ -2,11 +2,7 @@
 using libaxolotl.ecc;
 using libaxolotl.groups.ratchet;
 using Strilanc.Value;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static libaxolotl.state.StorageProtos;
 
 namespace libaxolotl.groups.state
@@ -18,7 +14,6 @@ namespace libaxolotl.groups.state
      */
     public class SenderKeyState
     {
-
         private SenderKeyStateStructure senderKeyStateStructure;
 
         public SenderKeyState(uint id, uint iteration, byte[] chainKey, ECPublicKey signatureKey)

@@ -1,9 +1,4 @@
 ﻿using libaxolotl.util;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.groups.ratchet
 {
@@ -19,7 +14,6 @@ namespace libaxolotl.groups.ratchet
     */
     public class SenderChainKey
     {
-
         private static readonly byte[] MESSAGE_KEY_SEED = { 0x01 };
         private static readonly byte[] CHAIN_KEY_SEED = { 0x02 };
 

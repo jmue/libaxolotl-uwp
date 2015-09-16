@@ -3,17 +3,11 @@ using libaxolotl.ecc;
 using libaxolotl.util;
 using Strilanc.Value;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static libaxolotl.protocol.WhisperProtos;
 
 namespace libaxolotl.protocol
 {
     public partial class PreKeyWhisperMessage : CiphertextMessage
     {
-
         private readonly uint version;
         private readonly uint registrationId;
         private readonly May<uint> preKeyId;
@@ -128,12 +122,10 @@ namespace libaxolotl.protocol
             return message;
         }
 
-
         public override byte[] serialize()
         {
             return serialized;
         }
-
 
         public override uint getType()
         {

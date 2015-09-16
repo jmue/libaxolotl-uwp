@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.groups
 {
@@ -35,7 +31,6 @@ namespace libaxolotl.groups
         {
             return groupId + "::" + sender.getName() + "::" + sender.getDeviceId();
         }
-
 
         public override bool Equals(Object other)
         {

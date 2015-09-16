@@ -6,10 +6,6 @@ using libaxolotl.state;
 using libaxolotl.util;
 using Strilanc.Value;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl
 {
@@ -32,7 +28,6 @@ namespace libaxolotl
  */
     public class SessionBuilder
     {
-
         private readonly SessionStore sessionStore;
         private readonly PreKeyStore preKeyStore;
         private readonly SignedPreKeyStore signedPreKeyStore;
@@ -242,11 +237,11 @@ namespace libaxolotl
                 AliceAxolotlParameters.Builder parameters = AliceAxolotlParameters.newBuilder();
 
                 parameters.setOurBaseKey(ourBaseKey)
-                              .setOurIdentityKey(identityKeyStore.getIdentityKeyPair())
-                              .setTheirIdentityKey(preKey.getIdentityKey())
-                              .setTheirSignedPreKey(theirSignedPreKey)
-                              .setTheirRatchetKey(theirSignedPreKey)
-                              .setTheirOneTimePreKey(supportsV3 ? theirOneTimePreKey : May<ECPublicKey>.NoValue);
+                          .setOurIdentityKey(identityKeyStore.getIdentityKeyPair())
+                          .setTheirIdentityKey(preKey.getIdentityKey())
+                          .setTheirSignedPreKey(theirSignedPreKey)
+                          .setTheirRatchetKey(theirSignedPreKey)
+                          .setTheirOneTimePreKey(supportsV3 ? theirOneTimePreKey : May<ECPublicKey>.NoValue);
 
                 if (!sessionRecord.isFresh()) sessionRecord.archiveCurrentState();
 
@@ -273,7 +268,6 @@ namespace libaxolotl
          * @throws InvalidKeyException if the received KeyExchangeMessage is badly formatted.
          */
         public KeyExchangeMessage process(KeyExchangeMessage message)
-
         {
             lock (SessionCipher.SESSION_LOCK)
             {
@@ -418,7 +412,6 @@ namespace libaxolotl
                 }
             }
         }
-
 
     }
 }

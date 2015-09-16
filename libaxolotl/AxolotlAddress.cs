@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl
 {
     public class AxolotlAddress
     {
-
         private readonly String name;
         private readonly uint deviceId;
 
@@ -41,7 +36,6 @@ namespace libaxolotl
             AxolotlAddress that = (AxolotlAddress)other;
             return this.name.Equals(that.name) && this.deviceId == that.deviceId;
         }
-
 
         public override int GetHashCode()
         {

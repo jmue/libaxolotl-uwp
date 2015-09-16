@@ -2,16 +2,11 @@
 using libaxolotl.ecc;
 using libaxolotl.util;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.protocol
 {
     public partial class SenderKeyDistributionMessage : CiphertextMessage
     {
-
         private readonly uint id;
         private readonly uint iteration;
         private readonly byte[] chainKey;
@@ -80,7 +75,6 @@ namespace libaxolotl.protocol
         {
             return serialized;
         }
-
 
         public override uint getType()
         {

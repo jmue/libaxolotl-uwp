@@ -1,11 +1,4 @@
-﻿using libaxolotl.state;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace libaxolotl.state
+﻿namespace libaxolotl.state
 {
     /**
      * An interface describing the local storage of {@link PreKeyRecord}s.
@@ -14,7 +7,6 @@ namespace libaxolotl.state
      */
     public interface PreKeyStore
     {
-
         /**
          * Load a local PreKeyRecord.
          *
@@ -36,7 +28,7 @@ namespace libaxolotl.state
          * @param preKeyId A PreKeyRecord ID.
          * @return true if the store has a record for the preKeyId, otherwise false.
          */
-         bool containsPreKey(uint preKeyId);
+        bool containsPreKey(uint preKeyId);
 
         /**
          * Delete a PreKeyRecord from local storage.
@@ -44,6 +36,5 @@ namespace libaxolotl.state
          * @param preKeyId The ID of the PreKeyRecord to remove.
          */
         void removePreKey(uint preKeyId);
-
     }
 }

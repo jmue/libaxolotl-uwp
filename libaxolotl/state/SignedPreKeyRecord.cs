@@ -1,17 +1,12 @@
 ﻿using Google.ProtocolBuffers;
 using libaxolotl.ecc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static libaxolotl.state.StorageProtos;
 
 namespace libaxolotl.state
 {
     public class SignedPreKeyRecord
     {
-
         private SignedPreKeyRecordStructure structure;
 
         public SignedPreKeyRecord(uint id, ulong timestamp, ECKeyPair keyPair, byte[] signature)

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace libaxolotl.groups.state
+﻿namespace libaxolotl.groups.state
 {
     public interface SenderKeyStore
     {
@@ -32,7 +26,6 @@ namespace libaxolotl.groups.state
          * @return a copy of the SenderKeyRecord corresponding to the (groupId + senderId + deviceId tuple, or
          *         a new SenderKeyRecord if one does not currently exist.
          */
-
         SenderKeyRecord loadSenderKey(SenderKeyName senderKeyName);
     }
 }

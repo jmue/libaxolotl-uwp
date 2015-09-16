@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace libaxolotl.ecc
+﻿namespace libaxolotl.ecc
 {
     public class ECKeyPair
     {
-
         private readonly ECPublicKey publicKey;
         private readonly ECPrivateKey privateKey;
 

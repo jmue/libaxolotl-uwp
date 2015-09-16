@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace libaxolotl.ratchet
+﻿namespace libaxolotl.ratchet
 {
     public class MessageKeys
     {
-
         private readonly byte[] cipherKey;
         private readonly byte[] macKey;
         private readonly byte[] iv;

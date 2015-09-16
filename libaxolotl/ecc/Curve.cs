@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace libaxolotl.ecc
+﻿namespace libaxolotl.ecc
 {
     public class Curve
     {
-
         public static readonly int BEST = 0x05;
         public const int DJB_TYPE = 0x05;
 

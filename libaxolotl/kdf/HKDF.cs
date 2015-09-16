@@ -1,16 +1,11 @@
 ﻿using libaxolotl.util;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace libaxolotl.kdf
 {
     public abstract class HKDF
     {
-
         private static readonly int HASH_OUTPUT_SIZE = 32;
 
         public static HKDF createFor(uint messageVersion)
