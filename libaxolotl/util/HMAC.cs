@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.Security.Cryptography;
-using Windows.Security.Cryptography.Core;
-using Windows.Storage.Streams;
 
 namespace libaxolotl.util
 {
@@ -13,20 +12,8 @@ namespace libaxolotl.util
     {
         public static byte[] sha256sum(byte[] key, byte[] message)
         {
-            MacAlgorithmProvider provider = MacAlgorithmProvider.OpenAlgorithm(MacAlgorithmNames.HmacSha256);
-
-            IBuffer buffKey = CryptographicBuffer.CreateFromByteArray(key);
-            CryptographicKey hmacKey = provider.CreateKey(buffKey);
-
-            IBuffer buffMessage = CryptographicBuffer.CreateFromByteArray(message);
-
-            IBuffer buffHMAC = CryptographicEngine.Sign(hmacKey, buffMessage);
-
-            byte[] hmac;
-
-            CryptographicBuffer.CopyToByteArray(buffHMAC, out hmac);
-
-            return hmac;
+            HMAC hash = new HMACSHA256(key);
+            return hash.ComputeHash(message);
         }
     }
 
@@ -34,76 +21,83 @@ namespace libaxolotl.util
     {
         public static byte[] aesCbcPkcs5(byte[] message, byte[] key, byte[] iv)
         {
-            SymmetricKeyAlgorithmProvider objAlg = SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithmNames.AesCbcPkcs7); // PKCS5
-            IBuffer buffKey = CryptographicBuffer.CreateFromByteArray(key);
-            CryptographicKey ckey = objAlg.CreateSymmetricKey(buffKey);
+            byte[] encrypted;
 
+            using (AesCryptoServiceProvider aesAlg = new AesCryptoServiceProvider())
+            {
+                aesAlg.BlockSize = 128;
+                aesAlg.KeySize = 256;
+                aesAlg.Padding = PaddingMode.PKCS7;
+                aesAlg.Mode = CipherMode.CBC;
+                aesAlg.Key = key;
+                aesAlg.IV = iv;
 
-            IBuffer buffPlaintext = CryptographicBuffer.CreateFromByteArray(message);
-            IBuffer buffIV = CryptographicBuffer.CreateFromByteArray(iv);
-            IBuffer buffEncrypt = CryptographicEngine.Encrypt(ckey, buffPlaintext, buffIV);
+                using (ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV))
+                {
+                    using (MemoryStream to = new MemoryStream())
+                    {
+                        using (CryptoStream writer = new CryptoStream(to, encryptor, CryptoStreamMode.Write))
+                        {
+                            writer.Write(message, 0, message.Length);
+                            writer.FlushFinalBlock();
+                            encrypted = to.ToArray();
+                        }
+                    }
+                }
+            }
 
-            byte[] ret;
-            CryptographicBuffer.CopyToByteArray(buffEncrypt, out ret);
-
-            return ret;
+            //return ByteUtil.trim(encrypted, message.Length);
+            return encrypted;
         }
+
         public static byte[] aesCtr(byte[] message, byte[] key, uint counter)
         {
-            SymmetricKeyAlgorithmProvider objAlg = SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithmNames.AesCbcPkcs7); // CRT
-            IBuffer buffKey = CryptographicBuffer.CreateFromByteArray(key);
-            CryptographicKey ckey = objAlg.CreateSymmetricKey(buffKey);
-
             byte[] ivBytes = new byte[16];
             ByteUtil.intToByteArray(ivBytes, 0, (int)counter);
 
-            IBuffer buffPlaintext = CryptographicBuffer.CreateFromByteArray(message);
-            IBuffer buffIV = CryptographicBuffer.CreateFromByteArray(ivBytes);
-            IBuffer buffEncrypt = CryptographicEngine.Encrypt(ckey, buffPlaintext, buffIV);
-
-            byte[] ret;
-            CryptographicBuffer.CopyToByteArray(buffEncrypt, out ret);
-
-            return ret;
+            return aesCbcPkcs5(message, key, ivBytes);
         }
-
-
     }
 
     public class Decrypt
     {
         public static byte[] aesCbcPkcs5(byte[] message, byte[] key, byte[] iv)
         {
-            SymmetricKeyAlgorithmProvider objAlg = SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithmNames.AesCbcPkcs7);
-            IBuffer buffKey = CryptographicBuffer.CreateFromByteArray(key);
-            CryptographicKey ckey = objAlg.CreateSymmetricKey(buffKey);
+            byte[] decrypted;
+            int decryptedByteCount = 0;
 
+            using (AesCryptoServiceProvider aesAlg = new AesCryptoServiceProvider())
+            {
+                aesAlg.BlockSize = 128;
+                aesAlg.KeySize = 256;
+                aesAlg.Padding = PaddingMode.PKCS7;
+                aesAlg.Mode = CipherMode.CBC;
+                aesAlg.Key = key;
+                aesAlg.IV = iv;
 
-            IBuffer buffPlaintext = CryptographicBuffer.CreateFromByteArray(message);
-            IBuffer buffIV = CryptographicBuffer.CreateFromByteArray(iv);
-            IBuffer buffEncrypt = CryptographicEngine.Decrypt(ckey, buffPlaintext, buffIV);
+                using (ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV))
+                {
+                    using (MemoryStream from = new MemoryStream(message))
+                    {
+                        using (CryptoStream reader = new CryptoStream(from, decryptor, CryptoStreamMode.Read))
+                        {
+                            decrypted = new byte[message.Length];
+                            decryptedByteCount = reader.Read(decrypted, 0, decrypted.Length);
+                        }
+                    }
+                }
 
-            byte[] ret;
-            CryptographicBuffer.CopyToByteArray(buffEncrypt, out ret);
-            return ret;
+            }
+
+            return ByteUtil.trim(decrypted, decryptedByteCount);
         }
 
         public static byte[] aesCtr(byte[] message, byte[] key, uint counter)
         {
-            SymmetricKeyAlgorithmProvider objAlg = SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithmNames.AesCbcPkcs7);
-            IBuffer buffKey = CryptographicBuffer.CreateFromByteArray(key);
-            CryptographicKey ckey = objAlg.CreateSymmetricKey(buffKey);
-
             byte[] ivBytes = new byte[16];
             ByteUtil.intToByteArray(ivBytes, 0, (int)counter);
 
-            IBuffer buffPlaintext = CryptographicBuffer.CreateFromByteArray(message);
-            IBuffer buffIV = CryptographicBuffer.CreateFromByteArray(ivBytes);
-            IBuffer buffEncrypt = CryptographicEngine.Decrypt(ckey, buffPlaintext, buffIV);
-
-            byte[] ret;
-            CryptographicBuffer.CopyToByteArray(buffEncrypt, out ret);
-            return ret;
+            return aesCbcPkcs5(message, key, ivBytes);
         }
     }
 

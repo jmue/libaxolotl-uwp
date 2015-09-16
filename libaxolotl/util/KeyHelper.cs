@@ -3,10 +3,9 @@ using libaxolotl.state;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.Security.Cryptography;
-using Windows.Storage.Streams;
 
 namespace libaxolotl.util
 {
@@ -60,10 +59,14 @@ namespace libaxolotl.util
 
         public static uint getRandomSequence(uint max)
         {
+            byte[] randomBytes = new byte[4];
 
-            return CryptographicBuffer.GenerateRandomNumber() % max;
+            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+            rng.GetBytes(randomBytes);
 
+            uint value = BitConverter.ToUInt32(randomBytes, 0);
 
+            return value % max;
         }
 
         /**
@@ -129,20 +132,22 @@ namespace libaxolotl.util
 
         public static byte[] generateSenderKey()
         {
-
             byte[] key = new byte[32];
-            IBuffer random = CryptographicBuffer.GenerateRandom(32);
-            CryptographicBuffer.CopyToByteArray(random, out key);
+
+            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+            rng.GetBytes(key);
 
             return key;
-
         }
 
         public static uint generateSenderKeyId()
         {
+            byte[] randomBytes = new byte[4];
 
-            return CryptographicBuffer.GenerateRandomNumber();
+            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+            rng.GetBytes(randomBytes);
 
+            return BitConverter.ToUInt32(randomBytes, 0);
         }
 
         public static ulong getTime()

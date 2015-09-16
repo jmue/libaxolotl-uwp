@@ -1,7 +1,7 @@
 ﻿using libaxolotl.ecc;
 using libaxolotl.kdf;
 using libaxolotl.ratchet;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections;
 using System.Collections.Generic;

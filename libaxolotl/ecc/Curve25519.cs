@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using curve25519;
-using Windows.Security.Cryptography;
-using Windows.Security.Cryptography.Core;
-using Windows.Storage.Streams;
 using System.Diagnostics;
+using System.Security.Cryptography;
 
 namespace libaxolotl.ecc
 {
@@ -75,11 +73,12 @@ namespace libaxolotl.ecc
          */
         public byte[] calculateSignature(byte[] privateKey, byte[] message)
         {
+            byte[] randomBytes = new byte[64];
+            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+            rng.GetBytes(randomBytes);
 
-            byte[] random;
-            IBuffer rnd = CryptographicBuffer.GenerateRandom(64);
-            CryptographicBuffer.CopyToByteArray(rnd, out random);
-            return provider.calculateSignature(random, privateKey, message);
+
+            return provider.calculateSignature(randomBytes, privateKey, message);
         }
 
         /**

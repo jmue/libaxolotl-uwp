@@ -1,7 +1,7 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using libaxolotl.ecc;
 using System.Collections;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace libaxolotl_test
 {
